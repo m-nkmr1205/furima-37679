@@ -1,59 +1,64 @@
 # テーブル設計
 
 ## usersテーブル
-| Column      | Type      | Options                    | 
-|-------------|-----------|----------------------------|
-| nickname    | string    | null: false                |
-| email       | string    | null: false, unique: true  |
-| password    | string    | null: false                | 
+| Column                 | Type      | Options                    | 
+|------------------------|-----------|----------------------------|
+| nickname               | string    | null: false                |
+| email                  | string    | null: false, unique: true  |
+| encrypted_password     | string    | null: false                |
+| last_name              | string    | null: false                |
+| first_name             | string    | null: false                |
+| last_name_kana         | string    | null: false                |
+| first_name_kana        | string    | null: false                |
+| user_birth_date_year   | integer   | null: false, Activehash    |
+| user_birth_date_month  | integer   | null: false, Activehash    |
+| user_birth_date_day    | integer   | null: false, Activehash    |
 
 ### Association 
 - has_many :items
-- has_many :purchase records
+- has_many :purchase_records
 
 
 ## itemsテーブル
-| Column           | Type        | Option                          |
-|------------------|-------------|---------------------------------|
-| item name        | string      | null: false                     |
-| description      | text        | null: false                     |
-| category         | string      | null: false                     |
-| condition        | string      | null: false                     |
-| delivery charge  | string      | null: false                     |
-| shipping area    | string      | null: false                     |
-| day to ship      | string      | null: false                     |
-| price            | integer     | null: false                     |
-| commission       | integer     | null: false                     |
-| profit           | integer     | null: false                     |
-| users_id         | references  | null: false, foreign_key: true  |
+| Column              | Type        | Option                          |
+|---------------------|-------------|---------------------------------|
+| item_name           | string      | null: false                     |
+| description         | text        | null: false                     |
+| category_id         | integer     | null: false, Activehash         |
+| condition_id        | integer     | null: false, Activehash         |
+| postage_type_id     | integer     | null: false, Activehash         |
+| shipping_area_id    | integer     | null: false, Activehash         |
+| Preparation_days_id | integer     | null: false, Activehash         |
+| price               | integer     | null: false                     |
+| user                | references  | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
-- has_one :purchase record
+- has_one :purchase_record
 
 
-## purchase recordsテーブル
-|Column       | Type         | Option             |
-|-------------|--------------|--------------------|
-| users_id    | references   | foreign_key: true  |
-| items_id    | references   | foreign_key: true  |
+## purchase_recordsテーブル
+|Column   | Type         | Option                          |
+|---------|--------------|---------------------------------|
+| user    | references   | null: false, foreign_key: true  |
+| item    | references   | null: false, foreign_key: true  |
 
 ### Association
 - has_many :users
 - belongs_to :items
-- has_one :shipping information
+- has_one :shipping_information
 
 
-##　shipping informationsテーブル
-| Column          | Type         | Option             |
-|-----------------|--------------|--------------------|
-| post code       | integer      | null: false        | 
-| prefectures     | text         | null: false        |
-| municipulities  | text         | null: false        | 
-| block number    | integer      | null: false        |
-| building name   | text         |                    |
-| phon number     | integer      | null: false        |
-| purchase_id     | references   | foreign_key: true  |
+##　shipping_informationsテーブル
+| Column          | Type         | Option                          |
+|-----------------|--------------|---------------------------------|
+| post_code       | integer      | null: false                     | 
+| prefectures     | integer      | null: false, Activehash         | 
+| municipulities  | string       | null: false                     | 
+| block_number    | string       | null: false                     |
+| building_name   | text         |                                 |
+| phone_number    | string       | null: false                     |
+| purchase_record | references   | null: false, foreign_key: true  |
 
 ### Association
-- belongs_to :purchase records
+- belongs_to :purchase_record
