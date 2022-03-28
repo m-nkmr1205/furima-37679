@@ -10,7 +10,7 @@
 | first_name             | string    | null: false                |
 | last_name_kana         | string    | null: false                |
 | first_name_kana        | string    | null: false                |
-| birth_id               | date      | null: false, Activehash    |
+| birth                  | date      | null: false,               |
 
 ### Association 
 - has_many :items
@@ -32,7 +32,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :purchase_records
+- has_one :purchase_record
 
 
 ## purchase_recordsテーブル
@@ -44,7 +44,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_informations
+- has_one :shipping_information
 
 
 ##　shipping_informationsテーブル
