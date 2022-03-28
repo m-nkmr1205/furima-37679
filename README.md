@@ -10,9 +10,7 @@
 | first_name             | string    | null: false                |
 | last_name_kana         | string    | null: false                |
 | first_name_kana        | string    | null: false                |
-| user_birth_date_year   | integer   | null: false, Activehash    |
-| user_birth_date_month  | integer   | null: false, Activehash    |
-| user_birth_date_day    | integer   | null: false, Activehash    |
+| birth_id               | date      | null: false, Activehash    |
 
 ### Association 
 - has_many :items
@@ -27,14 +25,14 @@
 | category_id         | integer     | null: false, Activehash         |
 | condition_id        | integer     | null: false, Activehash         |
 | postage_type_id     | integer     | null: false, Activehash         |
-| shipping_area_id    | integer     | null: false, Activehash         |
-| Preparation_days_id | integer     | null: false, Activehash         |
+| prefecture_id       | integer     | null: false, Activehash         |
+| preparation_day_id  | integer     | null: false, Activehash         |
 | price               | integer     | null: false                     |
 | user                | references  | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
-- has_one :purchase_record
+- has_one :purchase_records
 
 
 ## purchase_recordsテーブル
@@ -44,19 +42,19 @@
 | item    | references   | null: false, foreign_key: true  |
 
 ### Association
-- has_many :users
-- belongs_to :items
-- has_one :shipping_information
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_informations
 
 
 ##　shipping_informationsテーブル
 | Column          | Type         | Option                          |
 |-----------------|--------------|---------------------------------|
-| post_code       | integer      | null: false                     | 
-| prefectures     | integer      | null: false, Activehash         | 
+| post_code       | string       | null: false                     | 
+| prefecture_id   | integer      | null: false, Activehash         | 
 | municipulities  | string       | null: false                     | 
 | block_number    | string       | null: false                     |
-| building_name   | text         |                                 |
+| building_name   | string       |                                 |
 | phone_number    | string       | null: false                     |
 | purchase_record | references   | null: false, foreign_key: true  |
 
