@@ -1,24 +1,59 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column      | Type      | Options                    | 
+|-------------|-----------|----------------------------|
+| nickname    | string    | null: false                |
+| email       | string    | null: false, unique: true  |
+| password    | string    | null: false                | 
 
-Things you may want to cover:
+### Association 
+- has_many :items
+- has_many :purchase records
 
-* Ruby version
 
-* System dependencies
+## itemsテーブル
+| Column           | Type        | Option                          |
+|------------------|-------------|---------------------------------|
+| item name        | string      | null: false                     |
+| description      | text        | null: false                     |
+| category         | string      | null: false                     |
+| condition        | string      | null: false                     |
+| delivery charge  | string      | null: false                     |
+| shipping area    | string      | null: false                     |
+| day to ship      | string      | null: false                     |
+| price            | integer     | null: false                     |
+| commission       | integer     | null: false                     |
+| profit           | integer     | null: false                     |
+| users_id         | references  | null: false, foreign_key: true  |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :purchase record
 
-* Database creation
 
-* Database initialization
+## purchase recordsテーブル
+|Column       | Type         | Option             |
+|-------------|--------------|--------------------|
+| users_id    | references   | foreign_key: true  |
+| items_id    | references   | foreign_key: true  |
 
-* How to run the test suite
+### Association
+- has_many :users
+- belongs_to :items
+- has_one :shipping information
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+##　shipping informationsテーブル
+| Column          | Type         | Option             |
+|-----------------|--------------|--------------------|
+| post code       | integer      | null: false        | 
+| prefectures     | text         | null: false        |
+| municipulities  | text         | null: false        | 
+| block number    | integer      | null: false        |
+| building name   | text         |                    |
+| phon number     | integer      | null: false        |
+| purchase_id     | references   | foreign_key: true  |
 
-* ...
+### Association
+- belongs_to :purchase records
