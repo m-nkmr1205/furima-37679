@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :postage_type_id
   belongs_to :prefecture_id
   belongs_to :preparation_day_id 
+  has_one_attached :image
 
 # validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
 # validates :condition_id, numericality: { other_than: 1 , message: "can't be blank"} 

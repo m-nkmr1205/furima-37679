@@ -33,6 +33,7 @@
 ### Association
 - belongs_to :user
 - has_one :purchase_record
+- has_one_attached :image
 
 
 ## purchase_recordsテーブル
