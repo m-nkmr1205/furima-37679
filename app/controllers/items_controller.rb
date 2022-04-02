@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
-  def index
-    
+  before_action :authenticate_user!
+
+  def index 
   end
 
   def new
- 
   end
 
 private
