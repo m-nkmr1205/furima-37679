@@ -1,4 +1,4 @@
-class category_id <ActiveHash: :Base
+class Category_id < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: 'メンズ' },
