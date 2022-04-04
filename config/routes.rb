@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "furimas#index"
 
-  resources :items, only: [:new, :index, :create]
-
-
+  resources :items, only: [:new, :index, :create] 
+  
 end
