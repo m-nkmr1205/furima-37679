@@ -11,4 +11,3 @@ FactoryBot.define do
     birth                 { Faker::Date.birthday }
   end
 end
- 
