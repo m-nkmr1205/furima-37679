@@ -33,6 +33,14 @@
 ### Association
 - belongs_to :user
 - has_one :purchase_record
+- has_one_attached :image
+### ActiveHash::Associations
+- belongs_to :category_id
+- belongs_to :condition_id 
+- belongs_to :postage_type_id
+- belongs_to :prefecture_id
+- belongs_to :preparation_day_id 
+- has_many :items
 
 
 ## purchase_recordsテーブル
