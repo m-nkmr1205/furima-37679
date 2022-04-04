@@ -30,6 +30,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+     
+      it 'category_idが未選択では登録できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
 
       it 'condition_idが空では登録できない' do
         @item.condition_id = ''
@@ -37,8 +43,20 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end  
   
+      it 'condition_idが未選択では登録できない' do
+        @item.condition_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end  
+
       it 'postage_type_idが空では登録できない' do
         @item.postage_type_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postage type can't be blank")
+      end
+
+      it 'postage_type_idが未選択では登録できない' do
+        @item.postage_type_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage type can't be blank")
       end
@@ -49,8 +67,20 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
+      it 'prefecture_idが未選択では登録できない' do
+        @item.prefecture_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
       it 'preparation_day_idが空では登録できない' do
         @item.preparation_day_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Preparation day can't be blank")
+      end
+
+      it 'preparation_day_idが未登録では登録できない' do
+        @item.preparation_day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Preparation day can't be blank")
       end
@@ -59,6 +89,12 @@ RSpec.describe Item, type: :model do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+
+      it 'priceに半角数字以外が含まれている場合は登録できない' do
+        @item.price = 'aaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
       it '価格が300円より低くては登録できない' do
@@ -78,8 +114,15 @@ RSpec.describe Item, type: :model do
        @item.valid?
       expect(@item.errors.full_messages).to include("Image can't be blank")
      end
+
+     it 'ユーザーが紐付いていなければ登録できない' do
+       @item.user = nil
+       @item.valid?
+       expect(@item.errors.full_messages).to include('User must exist')
+      end
+
     end 
   end
-
 end
+
 
