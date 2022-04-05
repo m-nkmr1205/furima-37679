@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root to: "furimas#index"
 
   resources :items, only: [:new, :index, :create] 
-  
+  resources :furimas,only: [:index]
 end
