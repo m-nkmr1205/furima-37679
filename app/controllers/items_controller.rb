@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     redirect_to root_path if current_user == @item.user_id
-    redirect_to new_user_session_path unless user_signed_in?   
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def update
@@ -33,6 +33,11 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    redirect_to root_path if @item.destroy
   end
 
   private
@@ -48,5 +53,5 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
-  end   
+  end
 end
