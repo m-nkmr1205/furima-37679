@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all.order('created_at DESC')
   end
-  
+
   def new
     @item = Item.new
   end
@@ -33,11 +33,8 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
- 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
 
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 end
