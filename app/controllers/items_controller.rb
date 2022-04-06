@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_item, only: [:show]
   before_action :move_to_index, except: [:index, :show]
 
