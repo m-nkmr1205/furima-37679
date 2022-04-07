@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
 
   def edit
     redirect_to root_path if current_user != @item.user_id
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def update
@@ -38,7 +37,6 @@ class ItemsController < ApplicationController
   def destroy
    if current_user.id == @item.user_id
      @item.destroy
-     redirect_to root_path
    else
      redirect_to root_path
    end
