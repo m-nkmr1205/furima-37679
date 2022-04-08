@@ -68,3 +68,5 @@
 
 ### Association
 - belongs_to :purchase_record
+### ActiveHash::Associations
+- belongs_to :prefecture
